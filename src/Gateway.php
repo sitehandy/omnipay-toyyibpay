@@ -19,8 +19,8 @@ class Gateway extends AbstractGateway
     {
         return array(
             'userSecretKey' => '',
-            'categoryCode' => ''
-            'testMode' => false,
+            'categoryCode' => '',
+            'testMode' => false
         );
     }
 
