@@ -5,7 +5,7 @@ namespace Omnipay\ToyyibPay\Message;
 use Omnipay\Common\Message\AbstractResponse;
 use Omnipay\Common\Message\RedirectResponseInterface;
 
-class CreateBillResponse extends AbstractResponse implements RedirectResponseInterface
+class CompleteCreateBillResponse extends AbstractResponse implements RedirectResponseInterface
 {
     protected $baseEndpoint = 'https://toyyibpay.com/';
 

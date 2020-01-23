@@ -2,7 +2,7 @@
 
 namespace Omnipay\ToyyibPay\Message;
 
-class CreateBillRequest extends AbstractRequest
+class CompleteCreateBillRequest extends AbstractRequest
 {
     protected $productionEndpoint = 'https://' . $this->baseEndpoint . 'index.php/api/getBillTransactions';
 
