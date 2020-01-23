@@ -2,6 +2,8 @@
 
 namespace Omnipay\ToyyibPay;
 
+use Omnipay\Common\AbstractGateway;
+
 /**
  * toyyibPay Payment Gateway
  *
