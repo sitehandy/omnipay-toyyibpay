@@ -1,0 +1,31 @@
+{
+    "name": "sitehandy/omnipay-toyyibpay",
+    "type": "library",
+    "description": "toyyibPay driver for the Omnipay payment processing library",
+    "keywords": [
+        "gateway",
+        "merchant",
+        "omnipay",
+        "pay",
+        "payment",
+        "toyyibpay"
+    ],
+    "homepage": "https://github.com/sitehandy/omnipay-toyyibpay",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Amirol Zolkifli",
+            "email": "amirol@sitehandy.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": { "Omnipay\\ToyyibPay\\" : "src/" }
+    },
+    "require": {
+        "omnipay/common": "^3"
+    },
+    "require-dev": {
+        "omnipay/tests": "^3"
+    },
+    "prefer-stable": true
+}
