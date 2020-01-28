@@ -3,12 +3,11 @@
 namespace Omnipay\ToyyibPay\Message;
 
 use Omnipay\Common\Message\AbstractResponse;
+use Omnipay\Common\Message\RequestInterface;
 use Omnipay\Common\Message\RedirectResponseInterface;
 
 class CreateBillResponse extends AbstractResponse implements RedirectResponseInterface
 {
-    protected $baseEndpoint = 'https://toyyibpay.com/';
-
     public function isSuccessful()
     {
         return false;
@@ -16,12 +15,12 @@ class CreateBillResponse extends AbstractResponse implements RedirectResponseInt
 
     public function isRedirect()
     {
-        return isset($this->data[0]['BillCode']) ? true : false;
+        return isset($this->data['BillCode']) ? true : false;
     }
 
     public function getRedirectUrl()
     {
-        return $this->baseEndpoint . $this->data[0]['BillCode'];
+        return $this->data['redirectUrl'];
     }
 
     public function getRedirectMethod()
@@ -31,11 +30,16 @@ class CreateBillResponse extends AbstractResponse implements RedirectResponseInt
 
     public function getRedirectData()
     {
-        return $this->data;
+        return $this->getData();
     }
 
     public function getTransactionReference()
     {
-        return isset($this->data[0]['BillCode']) ? $this->data[0]['BillCode'] : null;
+        return isset($this->data['BillCode']) ? $this->data['BillCode'] : null;
+    }
+
+    public function getMessage()
+    {
+        return 'Sorry, there was an error processing your payment. Please try again later.';
     }
 }

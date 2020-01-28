@@ -6,7 +6,6 @@ use Omnipay\Common\Message\AbstractRequest as BaseAbstractRequest;
 
 abstract class AbstractRequest extends BaseAbstractRequest
 {
-    protected $baseEndpoint = 'toyyibpay.com';
 
     public function getUserSecretKey()
     {
@@ -70,7 +69,7 @@ abstract class AbstractRequest extends BaseAbstractRequest
 
     public function getBillAmount()
     {
-        return $this->getParameter('billAmount');
+        return $this->getParameter('billAmount')*100;
     }
 
     public function setBillAmount($value)
@@ -186,5 +185,15 @@ abstract class AbstractRequest extends BaseAbstractRequest
     public function setBillContentEmail($value)
     {
         return $this->setParameter('billContentEmail', $value);
+    }
+
+    public function getBillCode()
+    {
+        return $this->getParameter('billCode');
+    }
+
+    public function setBillCode($value)
+    {
+        return $this->setParameter('billCode', $value);
     }
 }
