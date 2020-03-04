@@ -28,7 +28,7 @@ Each payment is a `Bill`, which is under a `Category`. To begin, you need to ope
 
 Reference: https://toyyibpay.com/apireference/#cb
 
-Bill serves as an invoice to your customer. The example below explains how you can create a toyyibPay Bill and then redirect user to the payment page.
+Bill serves as an invoice to your customer. The example below explains how you can create a toyyibPay Bill and then redirect the customer to the payment page.
 
 ```php
 $gateway = Omnipay::create('ToyyibPay');
