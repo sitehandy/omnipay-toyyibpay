@@ -24,13 +24,16 @@ class Gateway extends AbstractGateway
         );
     }
 
-    public function createBill(array $parameters = array())
+    /**
+     * Authorize and capture a payment.
+     */
+    public function purchase(array $parameters = [])
     {
-        return $this->createRequest('\Omnipay\ToyyibPay\Message\CreateBillRequest', $parameters);
+        return $this->createRequest('\Omnipay\ToyyibPay\Message\PurchaseRequest', $parameters);
     }
 
-    public function completeCreateBill(array $parameters = array())
+    public function completePurchase(array $parameters = [])
     {
-        return $this->createRequest('\Omnipay\ToyyibPay\Message\CompleteCreateBillRequest', $parameters);
+        return $this->createRequest('\Omnipay\ToyyibPay\Message\CompletePurchaseRequest', $parameters);
     }
 }

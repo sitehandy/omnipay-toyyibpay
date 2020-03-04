@@ -2,12 +2,11 @@
 
 namespace Omnipay\ToyyibPay\Message;
 
-class CreateBillRequest extends AbstractRequest
+/**
+ * toyyibPay Create a Bill Request
+ */
+class PurchaseRequest extends AbstractRequest
 {
-    protected $productionEndpoint = 'https://toyyibpay.com/';
-
-    protected $sandboxEndpoint = 'https://dev.toyyibpay.com/';
-
     protected $apiEndpoint = 'index.php/api/createBill';
 
     protected function guardParameters()
@@ -27,25 +26,20 @@ class CreateBillRequest extends AbstractRequest
             'billEmail',
             'billPhone',
             'billSplitPayment',
-            'billSplitPaymentArgs'
+            'billSplitPaymentArgs',
+            'billPaymentChannel'
         );
-    }
-
-    protected function getEndpoint()
-    {
-        return $this->getTestMode() ? $this->sandboxEndpoint : $this->productionEndpoint;
     }
 
     protected function createResponse($data)
     {
-        return $this->response = new CreateBillResponse($this, $data);
+        return $this->response = new PurchaseResponse($this, $data);
     }
 
     public function getData()
     {
         $this->guardParameters();
 
-        // $data = $this->httpRequest->request->all();
         $data = array(
             'userSecretKey' => $this->getUserSecretKey(),
             'categoryCode' => $this->getCategoryCode(),
@@ -64,7 +58,9 @@ class CreateBillRequest extends AbstractRequest
             'billSplitPaymentArgs' => $this->getBillSplitPaymentArgs(),
             'billPaymentChannel' => $this->getBillPaymentChannel(),
             'billDisplayMerchant' => $this->getBillDisplayMerchant(),
-            'billContentEmail' => $this->getBillContentEmail()
+            'billContentEmail' => $this->getBillContentEmail(),
+            'billAdditionalField' => $this->getBillAdditionalField(),
+            'billChargeToCustomer' => $this->getBillChargeToCustomer()
         );
 
         return $data;
@@ -72,24 +68,12 @@ class CreateBillRequest extends AbstractRequest
 
     public function sendData($data)
     {
-        // $result = $this->httpClient->request('POST', $this->getEndpoint(), [
-        //     'form_params' => $data
-        // ]);
+        $data['apiEndpoint'] = $this->apiEndpoint;
+        $httpResponse = $this->sendRequest($data);
 
-        $curl = curl_init();
-        curl_setopt($curl, CURLOPT_POST, 1);
-        curl_setopt($curl, CURLOPT_URL, $this->getEndpoint() . $this->apiEndpoint);  
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+        $dataResponse['BillCode'] = $httpResponse[0]['BillCode'];
+        $dataResponse['redirectUrl'] = $this->getEndpoint() . $httpResponse[0]['BillCode'];
 
-        $result = curl_exec($curl);
-        curl_close($curl);
-        $response = json_decode($result, true);
-
-        $data['BillCode'] = $response[0]['BillCode'];
-        $data['redirectUrl'] = $this->getEndpoint() . $data['BillCode'];
-
-        return $this->createResponse($data);
+        return $this->createResponse($dataResponse);
     }
-
 }

@@ -6,6 +6,9 @@ use Omnipay\Common\Message\AbstractRequest as BaseAbstractRequest;
 
 abstract class AbstractRequest extends BaseAbstractRequest
 {
+    protected $productionEndpoint = 'https://toyyibpay.com/';
+
+    protected $sandboxEndpoint = 'https://dev.toyyibpay.com/';
 
     public function getUserSecretKey()
     {
@@ -187,6 +190,26 @@ abstract class AbstractRequest extends BaseAbstractRequest
         return $this->setParameter('billContentEmail', $value);
     }
 
+    public function getBillAdditionalField()
+    {
+        return $this->getParameter('billAdditionalField');
+    }
+
+    public function setBillAdditionalField($value)
+    {
+        return $this->setParameter('billAdditionalField', json_encode($value));
+    }
+
+    public function getBillChargeToCustomer()
+    {
+        return $this->getParameter('billChargeToCustomer');
+    }
+
+    public function setBillChargeToCustomer($value)
+    {
+        return $this->setParameter('billChargeToCustomer', $value);
+    }
+
     public function getBillCode()
     {
         return $this->getParameter('billCode');
@@ -195,5 +218,40 @@ abstract class AbstractRequest extends BaseAbstractRequest
     public function setBillCode($value)
     {
         return $this->setParameter('billCode', $value);
+    }
+
+    public function getBillpaymentStatus()
+    {
+        return $this->getParameter('billpaymentStatus');
+    }
+
+    public function setBillpaymentStatus($value)
+    {
+        return $this->setParameter('billpaymentStatus', $value);
+    }
+
+    public function sendRequest($data)
+    {
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_POST, 1);
+        curl_setopt($curl, CURLOPT_URL, $this->getEndpoint() . $data['apiEndpoint']);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+
+        $result = curl_exec($curl);
+        curl_close($curl);
+        $response = json_decode($result, true);
+
+        return $response;
+    }
+
+    public function getHttpMethod()
+    {
+        return 'POST';
+    }
+
+    public function getEndpoint()
+    {
+        return $this->getTestMode() ? $this->sandboxEndpoint : $this->productionEndpoint;
     }
 }
