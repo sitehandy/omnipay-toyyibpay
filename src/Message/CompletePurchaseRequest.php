@@ -39,6 +39,7 @@ class CompletePurchaseRequest extends AbstractRequest
         $httpResponse = $this->sendRequest($data);
         
         $dataResponse = $httpResponse[0];
+        $dataResponse['billUrl'] =  $this->getEndpoint() . $data['billCode'];
 
         return $this->createResponse($dataResponse);
     }
