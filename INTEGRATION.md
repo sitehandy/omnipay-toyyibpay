@@ -80,8 +80,9 @@ composer --version
 cd /path/to/your/project
 
 # Install Omnipay and toyyibPay driver
-composer require league/omnipay sitehandy/omnipay-toyyibpay:^1.0
-```
+composer require league/omnipay sitehandy/omnipay-toyyibpay
+
+> **Note**: Composer will automatically select the latest stable version. Avoid using version constraints like `:^1.0` to prevent composer warnings.
 
 ### Step 2: Verify Installation
 

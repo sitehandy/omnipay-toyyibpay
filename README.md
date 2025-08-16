@@ -22,8 +22,10 @@ processing library for PHP. This package implements toyyibPay support for Omnipa
 Omnipay is installed via [Composer](http://getcomposer.org/). To install, simply require `league/omnipay` and `sitehandy/omnipay-toyyibpay` with Composer:
 
 ```bash
-composer require league/omnipay sitehandy/omnipay-toyyibpay:^1.0
+composer require league/omnipay sitehandy/omnipay-toyyibpay
 ```
+
+> **Note**: Composer will automatically select the latest stable version. If you need a specific version, you can specify it, but using version constraints like `^1.0` may cause warnings.
 
 ### Version Information
 
