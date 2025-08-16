@@ -2,16 +2,34 @@
 
 **toyyibPay driver for the Omnipay PHP payment processing library**
 
+[![Latest Stable Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](https://github.com/sitehandy/omnipay-toyyibpay/releases/tag/v1.0.0)
+[![PHP Version](https://img.shields.io/badge/php-7.4%2B-blue.svg)](https://php.net)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+
 [Omnipay](https://github.com/thephpleague/omnipay) is a framework agnostic, multi-gateway payment
 processing library for PHP. This package implements toyyibPay support for Omnipay.
+
+## Requirements
+
+- PHP 7.4 or higher
+- PHP 8.0, 8.1, 8.2, 8.3, 8.4 supported
+- cURL extension
+- JSON extension
+- Omnipay 3.x
 
 ## Installation
 
 Omnipay is installed via [Composer](http://getcomposer.org/). To install, simply require `league/omnipay` and `sitehandy/omnipay-toyyibpay` with Composer:
 
+```bash
+composer require league/omnipay sitehandy/omnipay-toyyibpay:^1.0
 ```
-composer require league/omnipay sitehandy/omnipay-toyyibpay
-```
+
+### Version Information
+
+- **v1.0.0**: First stable release with PHP 7.4-8.4 support, modern HTTP client, and comprehensive testing
+- **Requirements**: PHP 7.4+ with cURL and JSON extensions
+- **Compatibility**: Omnipay 3.x framework
 
 ## Basic Usage
 

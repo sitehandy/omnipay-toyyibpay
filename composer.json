@@ -1,5 +1,6 @@
 {
     "name": "sitehandy/omnipay-toyyibpay",
+    "version": "1.0.0",
     "type": "library",
     "description": "toyyibPay driver for the Omnipay payment processing library",
     "keywords": [
@@ -50,7 +51,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "3.0.x-dev"
+            "dev-master": "1.0.x-dev"
         }
     },
     "prefer-stable": true,
